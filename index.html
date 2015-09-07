@@ -1,0 +1,14 @@
+<html>
+<head>
+	<title>hyeok's movie</title>
+</head>
+<body>
+	{% for list in dirlist %}
+        <div>
+		<a href='/{{ prefix }}/player?playlist={{list}}'>
+			{{list['dir']}}\{{list['filename']}}{{list['ext']}}
+		</a>
+        </div>
+	{% end %}
+</body>
+</html>

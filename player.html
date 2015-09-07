@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>hyeok's movie</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="./player/jwplayer/jwplayer.js"></script>
+	<script type="text/javascript">
+        $.getJSON("./player/privatekey/key.json", function( data ) {
+            jwplayer.key=data.jwplarer;
+        });
+    </script>
+</head>
+<body>
+    <b>{{playlist['dir']}}/{{playlist['filename']}}{{playlist['ext']}}</b>
+	<div id="jwvideo">Loading the player...</div>
+    
+	<script type="text/javascript">
+    jwplayer("jwvideo").setup({
+        width: 640,
+        height: 360,
+        playlist : [{
+            sources: [{
+                file: "/{{ prefix }}/{{playlist['dir']}}/{{playlist['filename']}}{{playlist['ext']}}",
+                type: "video/mp4"
+            }],
+            tracks: [{
+                file: "/{{ prefix }}/{{playlist['dir']}}/[KORENG]{{playlist['filename']}}.srt", 
+                label: "KORENG",
+                kind: "captions",
+            },{
+                file: "/{{ prefix }}/{{playlist['dir']}}/[KOR]{{playlist['filename']}}.srt", 
+                label: "KOR",
+                kind: "captions",
+            },{
+                file: "/{{ prefix }}/{{playlist['dir']}}/[ENG]{{playlist['filename']}}.srt", 
+                label: "ENG",
+                kind: "captions",
+            }],
+        }],
+        captions: {
+            backgroundOpacity: 0,
+            edgeStyle: "uniform"
+        }
+    });
+</script>
+
+</body>
+
+</html>
